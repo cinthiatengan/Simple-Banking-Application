@@ -9,31 +9,31 @@ public class BankApp {
 
 }
 
-class BankAccount {
+class BankAccount { 			// class with attributes 
 	int balance;
 	int previousTransaction;
 	String customerName;
 	String customerID;
 	
-	BankAccount(String cname, String cid){
+	BankAccount(String cname, String cid){ // constructor
 		customerName = cname;
 		customerID = cid;
 	}
 	
-	void deposit(int amount) {
+	void deposit(int amount) {  // function deposit
 		if(amount !=0) {
 			balance = balance+amount;
 			previousTransaction = amount;
 		}
 	}
-	void withdraw(int amount) {
+	void withdraw(int amount) {  //function withdraw
 		if (amount !=0) {
 			balance = balance - amount;
 			previousTransaction = -amount;
 		}
 	}
 	
-	void getPreviousTransactions() {
+	void getPreviousTransactions() {  //function to show what was the previous transaction realized 
 		if(previousTransaction >0 ) {
 			System.out.println("Deposited: "+previousTransaction);
 		}
@@ -45,7 +45,7 @@ class BankAccount {
 		}
 	}
 	
-	void showMenu() {
+	void showMenu() {  // show menu option to user
 		
 		char option= '\0';
 		Scanner scanner = new Scanner(System.in);
@@ -88,9 +88,24 @@ class BankAccount {
 				System.out.println("----------------------------------");
 				System.out.println("Enter an amount to withdraw: ");
 				System.out.println("----------------------------------");
+				int amount2 = scanner.nextInt();
+				withdraw(amount2);
+				System.out.println("\n");
+				break;
 				
+			case 'D':
+				System.out.println("----------------------------------");
+				getPreviousTransactions();
+				System.out.println("----------------------------------");
+				System.out.println("\n");
+				break;
+				
+			default:
+				System.out.println("Invalid option! Please enter again");
+				break;
 			}
-		}
+		} while(option != 'E');
+		System.out.println("Thank you for using out banking application!");
 		
 		
 	}
